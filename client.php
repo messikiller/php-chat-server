@@ -1,7 +1,10 @@
 <?php
+require('Wtt.class.php');
+$WTT = new Wtt();
+
 set_time_limit(0);
 
-$server_ip   = "127.0.0.1";
+$server_ip   = '127.0.0.1';
 $server_port = 2016;
 $msg_max_len = 1024;
 $is_connect  = false;
@@ -18,12 +21,16 @@ do {
     }
 
     echo '客户端：';
-    $input = trim(fgets(STDIN));
+    $stdin = trim(fgets(STDIN));
+    $input = $WTT->pack($stdin);
 
     socket_write($socket, $input, strlen($input)) or exit();
+
     if ($output = socket_read($socket, $msg_max_len)) {
-        echo "服务端：" . $output . "\n";
+        $data = $WTT->unpack($output);
+        echo '服务端：' . $data . "\n";
     }
+
     socket_close($socket);
+
 } while (true);
-?>

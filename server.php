@@ -1,7 +1,10 @@
 <?php
+require('Wtt.class.php');
+$WTT = new Wtt();
+
 set_time_limit(0);
 
-$server_ip   = "127.0.0.1";
+$server_ip   = '127.0.0.1';
 $server_port = 2016;
 $msg_max_len = 1024;
 $is_connect  = false;
@@ -18,15 +21,16 @@ do {
         echo "[2] 客户端连接成功！\n";
         $is_connect = true;
     }
-    $input   = socket_read($msgsock, $msg_max_len);
+    $input = socket_read($msgsock, $msg_max_len);
+    $msg   = $WTT->unpack($input);
 
-    echo "收到客户端消息：" . $input . "\n";
+    echo " - 收到客户端消息：" . $msg . "\n";
 
-    $output  = strrev(trim($input));
+    $data   = strrev(trim($msg));
+    $output = $WTT->pack($data);
 
     socket_write($msgsock, $output, strlen($output)) or exit();
     socket_close($msgsock);
 } while (true);
 
 socket_close($socket);
-?>
