@@ -45,8 +45,8 @@ class Wtt
     /**
      * pack steps: encode->check->combine
      *
-     * @param  string $msg
-     * @return mixed
+     * @param  string $msg message string to pack
+     * @return mixed       packed body string
      */
     public function pack($msg)
     {
@@ -60,8 +60,8 @@ class Wtt
     /**
      * unpack steps: divide->check->decode
      *
-     * @param  string $str
-     * @return mixed
+     * @param  string $str body string to unpack
+     * @return mixed       unpacked message string
      */
     public function unpack($str)
     {
