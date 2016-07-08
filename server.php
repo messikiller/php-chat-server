@@ -9,9 +9,9 @@ $server_port = 2016;
 $msg_max_len = 1024;
 $is_connect  = false;
 
-$socket      = socket_create(AF_INET, SOCK_STREAM, SOL_TCP) or exit();
-$binder      = socket_bind($socket, $server_ip, $server_port) or exit();;
-$listener    = socket_listen($socket, 4) or exit();
+$socket   = socket_create(AF_INET, SOCK_STREAM, SOL_TCP) or exit();
+$binder   = socket_bind($socket, $server_ip, $server_port) or exit();;
+$listener = socket_listen($socket, 4) or exit();
 
 echo "[1] 服务器已经成功启动......\n";
 

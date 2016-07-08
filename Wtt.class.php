@@ -39,7 +39,7 @@ class Wtt
         $this->error_info  = false;
         $this->encode_salt = '#%*';
         $this->check_func  = 'crc32';
-        $this->divider     = ':';
+        $this->divider     = ' | ';
     }
 
     /**
